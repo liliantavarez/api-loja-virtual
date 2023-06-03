@@ -33,7 +33,7 @@ public class EstadoController {
         return estadoService.excluir(id);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     ResponseEntity<Estado> alterar(@RequestBody EstadoDTO estadoDTO, @PathVariable Long id) {
         return estadoService.alterar(estadoDTO, id);
     }

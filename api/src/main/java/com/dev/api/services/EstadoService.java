@@ -35,8 +35,13 @@ public class EstadoService {
 
     public ResponseEntity<Estado> alterar(EstadoDTO estadoDTO, Long id) {
         return estadoRepository.findById(id).map(estado -> {
-            estado.setNome(estadoDTO.getNome());
-            estado.setSigla(estadoDTO.getSigla());
+            if (estadoDTO.getNome() != null) {
+                estado.setNome(estadoDTO.getNome());
+            }
+            if (estadoDTO.getSigla() != null) {
+                estado.setSigla(estadoDTO.getSigla());
+            }
+
             estado.setDataAtualizacao(new Date());
             return ResponseEntity.ok(estadoRepository.save(estado));
         }).orElseThrow(() -> new RegistroNaoEncontrado(id));
