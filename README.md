@@ -19,6 +19,8 @@ Desenvolvimento de uma loja virtual utilizando o spring, react e next.js
 ```http
   GET /api/estado
 ```
+![image](https://github.com/liliantavarez/loja-virtual/assets/51184806/ce147abd-9fab-4622-bffb-804d0c7c771b)
+
 
 #### Cadastra um estado
 
