@@ -5,7 +5,6 @@ import com.dev.api.entities.Estado;
 import com.dev.api.exceptions.RegistroNaoEncontrado;
 import com.dev.api.repositories.EstadoRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -16,35 +15,44 @@ import java.util.List;
 @Service
 public class EstadoService {
 
-    @Autowired
-    private EstadoRepository estadoRepository;
-    @Autowired
-    private ModelMapper modelMapper;
+    private final EstadoRepository estadoRepository;
+    private final ModelMapper modelMapper;
 
-    public ResponseEntity<List<EstadoDTO>> buscarTodos() {
-        return ResponseEntity.ok(estadoRepository.findAll().stream().map(estado -> modelMapper.map(estado, EstadoDTO.class)).toList());
+    public EstadoService(EstadoRepository estadoRepository, ModelMapper modelMapper) {
+        this.estadoRepository = estadoRepository;
+        this.modelMapper = modelMapper;
     }
 
-    public ResponseEntity<Estado> inserir(EstadoDTO estadoDTO, UriComponentsBuilder uriComponentsBuilder) {
+    public List<EstadoDTO> buscarTodos() {
+        return estadoRepository.findAll()
+                .stream()
+                .map(estado -> modelMapper.map(estado, EstadoDTO.class))
+                .toList();
+    }
+
+    public Estado inserir(EstadoDTO estadoDTO) {
         Estado estado = estadoRepository.save(modelMapper.map(estadoDTO, Estado.class));
         estado.setDataCriacao(new Date());
-        var uri = uriComponentsBuilder.path("/estado/{id}").buildAndExpand(estado.getId()).toUri();
-
-        return ResponseEntity.created(uri).body(estado);
+    return estado;
     }
 
-    public ResponseEntity<Estado> alterar(EstadoDTO estadoDTO, Long id) {
+    public Estado alterar(EstadoDTO estadoDTO, Long id) {
         return estadoRepository.findById(id).map(estado -> {
-            estado.setNome(estadoDTO.getNome());
-            estado.setSigla(estadoDTO.getSigla());
+            if (estadoDTO.getNome() != null) {
+                estado.setNome(estadoDTO.getNome());
+            }
+            if (estadoDTO.getSigla() != null) {
+                estado.setSigla(estadoDTO.getSigla());
+            }
+
             estado.setDataAtualizacao(new Date());
-            return ResponseEntity.ok(estadoRepository.save(estado));
+            return estadoRepository.save(estado);
         }).orElseThrow(() -> new RegistroNaoEncontrado(id));
     }
 
-    public ResponseEntity excluir(Long id) {
-        estadoRepository.delete(estadoRepository.findById(id).orElseThrow(() -> new RegistroNaoEncontrado(id)));
-
-        return ResponseEntity.noContent().build();
+    public void excluir(Long id) {
+        estadoRepository.delete(estadoRepository
+                .findById(id)
+                .orElseThrow(() -> new RegistroNaoEncontrado( id)));
     }
 }

@@ -1,8 +1,10 @@
 package com.dev.api.exceptions;
 
-public class RegistroNaoEncontrado extends RuntimeException {
-    private static final long serialVersionUID = 1L;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class RegistroNaoEncontrado extends RuntimeException {
     public RegistroNaoEncontrado(Long id) {
         super("Registro não encontrado com id: " + id);
     }
