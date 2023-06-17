@@ -1,6 +1,7 @@
 package com.dev.api.controllers;
 
 import com.dev.api.dto.CidadeDTO;
+import com.dev.api.dto.CidadeListagemDTO;
 import com.dev.api.entities.Cidade;
 import com.dev.api.services.CidadeService;
 import jakarta.validation.Valid;
@@ -29,7 +30,7 @@ public class CidadeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CidadeDTO>> buscarTodos() {
+    public ResponseEntity<List<CidadeListagemDTO>> buscarTodos() {
         return ResponseEntity.ok(cidadeService.buscarTodos());
     }
 
