@@ -1,6 +1,7 @@
 package com.dev.api.services;
 
 import com.dev.api.dto.CidadeDTO;
+import com.dev.api.dto.CidadeListagemDTO;
 import com.dev.api.entities.Cidade;
 import com.dev.api.exceptions.RegistroNaoEncontrado;
 import com.dev.api.repositories.CidadeRepository;
@@ -27,10 +28,10 @@ public class CidadeService {
         return cidade;
     }
 
-    public List<CidadeDTO> buscarTodos() {
+    public List<CidadeListagemDTO> buscarTodos() {
         return cidadeRepository.findAll()
                 .stream()
-                .map(cidade -> modelMapper.map(cidade, CidadeDTO.class))
+                .map(cidade -> modelMapper.map(cidade, CidadeListagemDTO.class))
                 .toList();
     }
 
