@@ -1,6 +1,7 @@
 package com.dev.api.services;
 
 import com.dev.api.dto.PessoaDTO;
+import com.dev.api.dto.PessoaListagemDTO;
 import com.dev.api.entities.Pessoa;
 import com.dev.api.exceptions.RegistroNaoEncontrado;
 import com.dev.api.repositories.PessoaRepository;
@@ -21,10 +22,10 @@ public class PessoaService {
         this.modelMapper = modelMapper;
     }
 
-    public List<PessoaDTO> buscarTodos() {
+    public List<PessoaListagemDTO> buscarTodos() {
         return pessoaRepository.findAll()
                 .stream()
-                .map(pessoa -> modelMapper.map(pessoa, PessoaDTO.class)).toList();
+                .map(pessoa -> modelMapper.map(pessoa, PessoaListagemDTO.class)).toList();
     }
 
     public Pessoa inserir(PessoaDTO pessoaDTO) {

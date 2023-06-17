@@ -1,6 +1,7 @@
 package com.dev.api.controllers;
 
 import com.dev.api.dto.PessoaDTO;
+import com.dev.api.dto.PessoaListagemDTO;
 import com.dev.api.entities.Pessoa;
 import com.dev.api.services.PessoaService;
 import jakarta.validation.Valid;
@@ -19,7 +20,7 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @GetMapping
-    ResponseEntity<List<PessoaDTO>> buscarTodos() {
+    ResponseEntity<List<PessoaListagemDTO>> buscarTodos() {
         return ResponseEntity.ok(pessoaService.buscarTodos());
     }
 
