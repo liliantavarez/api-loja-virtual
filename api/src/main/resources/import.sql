@@ -28,9 +28,9 @@ values ('Sony', '2023-06-04T18:10:32.341+00:00');
 insert into marca(nome, data_criacao)
 values ('Samsung', '2023-06-04T18:10:32.341+00:00');
 
-insert into marca(nome, data_criacao)
-values ('DELL', '2023-06-04T18:10:32.341+00:00');
-insert into marca(nome, data_criacao)
-values ('Sony', '2023-06-04T18:10:32.341+00:00');
-insert into marca(nome, data_criacao)
-values ('Samsung', '2023-06-04T18:10:32.341+00:00');
+insert into categoria(nome, data_criacao)
+values ('Notebook', '2023-06-14T18:11:28.532+00:00');
+insert into categoria(nome, data_criacao)
+values ('Fone de Ouvido', '2023-06-14T18:11:31.532+00:00');
+insert into categoria(nome, data_criacao)
+values ('TV', '2023-06-14T18:11:40.532+00:00');
