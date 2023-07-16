@@ -27,3 +27,10 @@ insert into marca(nome, data_criacao)
 values ('Sony', '2023-06-04T18:10:32.341+00:00');
 insert into marca(nome, data_criacao)
 values ('Samsung', '2023-06-04T18:10:32.341+00:00');
+
+insert into marca(nome, data_criacao)
+values ('DELL', '2023-06-04T18:10:32.341+00:00');
+insert into marca(nome, data_criacao)
+values ('Sony', '2023-06-04T18:10:32.341+00:00');
+insert into marca(nome, data_criacao)
+values ('Samsung', '2023-06-04T18:10:32.341+00:00');
