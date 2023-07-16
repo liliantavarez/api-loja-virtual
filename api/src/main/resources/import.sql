@@ -34,3 +34,16 @@ insert into categoria(nome, data_criacao)
 values ('Fone de Ouvido', '2023-06-14T18:11:31.532+00:00');
 insert into categoria(nome, data_criacao)
 values ('TV', '2023-06-14T18:11:40.532+00:00');
+
+insert into produto(nome, descricao_curta, descricao_detalhada, valor_custo, valor_venda, marca_id, categoria_id,
+                    data_criacao)
+values ('Latitude 3410', 'descricao curta produto 01', 'descricao detalhada do produto 01', 1023.00, 1576.00, 1, 1,
+        '2023-06-24T18:09:32.532+00:00');
+insert into produto(nome, descricao_curta, descricao_detalhada, valor_custo, valor_venda, marca_id, categoria_id,
+                    data_criacao)
+values ('MDR-7506', 'descricao curta produto 02', 'descricao detalhada do produto 02', 54.12, 72.32, 2, 2,
+        '2023-06-24T18:09:54.532+00:00');
+insert into produto(nome, descricao_curta, descricao_detalhada, valor_custo, valor_venda, marca_id, categoria_id,
+                    data_criacao)
+values ('50CU7700', 'descricao curta produto 03', 'descricao detalhada do produto 03', 2014.15, 2374.05, 3, 3,
+        '2023-06-24T18:09:18.532+00:00');
