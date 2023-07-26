@@ -5,6 +5,7 @@ import com.dev.api.dto.ProdutoListagemDTO;
 import com.dev.api.entities.Produto;
 import com.dev.api.exceptions.RegistroNaoEncontrado;
 import com.dev.api.repositories.ProdutoRepository;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +13,12 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ProdutoService {
 
     ProdutoRepository produtoRepository;
     ModelMapper modelMapper;
 
-    public ProdutoService(ProdutoRepository produtoRepository, ModelMapper modelMapper) {
-        this.produtoRepository = produtoRepository;
-        this.modelMapper = modelMapper;
-    }
 
     public List<ProdutoListagemDTO> buscarTodos() {
         List<Produto> produtos = produtoRepository.findAll();
@@ -28,9 +26,9 @@ public class ProdutoService {
         return produtos.stream().map(produto -> modelMapper.map(produto, ProdutoListagemDTO.class)).toList();
     }
 
-    public Produto inserir(Produto produto) {
+    public ProdutoListagemDTO inserir(Produto produto) {
         produto.setDataCriacao(new Date());
-        return produtoRepository.save(produto);
+        return modelMapper.map(produtoRepository.save(produto), ProdutoListagemDTO.class);
     }
 
     public ProdutoListagemDTO alterar(ProdutoAtualizacaoDTO produtoAtualizacaoDTO, Long id) {

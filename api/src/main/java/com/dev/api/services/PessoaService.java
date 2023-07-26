@@ -5,6 +5,7 @@ import com.dev.api.dto.PessoaListagemDTO;
 import com.dev.api.entities.Pessoa;
 import com.dev.api.exceptions.RegistroNaoEncontrado;
 import com.dev.api.repositories.PessoaRepository;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +13,12 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class PessoaService {
 
-    PessoaRepository pessoaRepository;
-    ModelMapper modelMapper;
+    private final PessoaRepository pessoaRepository;
+    private final ModelMapper modelMapper;
 
-    public PessoaService(PessoaRepository pessoaRepository, ModelMapper modelMapper) {
-        this.pessoaRepository = pessoaRepository;
-        this.modelMapper = modelMapper;
-    }
 
     public List<PessoaListagemDTO> buscarTodos() {
         return pessoaRepository.findAll()
@@ -28,10 +26,10 @@ public class PessoaService {
                 .map(pessoa -> modelMapper.map(pessoa, PessoaListagemDTO.class)).toList();
     }
 
-    public Pessoa inserir(PessoaDTO pessoaDTO) {
-        Pessoa pessoa = pessoaRepository.save(modelMapper.map(pessoaDTO, Pessoa.class));
+    public PessoaDTO inserir(Pessoa pessoa) {
+        PessoaDTO pessoaDTO = modelMapper.map(pessoaRepository.save(pessoa), PessoaDTO.class);
         pessoa.setDataCriacao(new Date());
-        return pessoa;
+        return pessoaDTO;
     }
 
     public Pessoa atualizar(PessoaDTO pessoaDTO, Long id) {

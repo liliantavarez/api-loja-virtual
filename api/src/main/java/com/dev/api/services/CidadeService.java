@@ -5,6 +5,7 @@ import com.dev.api.dto.CidadeListagemDTO;
 import com.dev.api.entities.Cidade;
 import com.dev.api.exceptions.RegistroNaoEncontrado;
 import com.dev.api.repositories.CidadeRepository;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +13,12 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class CidadeService {
 
     private final CidadeRepository cidadeRepository;
     private final ModelMapper modelMapper;
-
-    public CidadeService(CidadeRepository cidadeRepository, ModelMapper modelMapper) {
-        this.cidadeRepository = cidadeRepository;
-        this.modelMapper = modelMapper;
-    }
-
+    
     public Cidade inserir(CidadeDTO cidadeDTO) {
         Cidade cidade = cidadeRepository.save(modelMapper.map(cidadeDTO, Cidade.class));
         cidade.setDataCriacao(new Date());
@@ -35,16 +32,14 @@ public class CidadeService {
                 .toList();
     }
 
-    public Cidade alterar(CidadeDTO cidadeDTO, Long id) {
+    public CidadeDTO alterar(Cidade cidadeDTO, Long id) {
         return cidadeRepository.findById(id).map(cidade -> {
-            if (cidadeDTO.getNome() != null) {
-                cidade.setNome(cidadeDTO.getNome());
-            }
+            cidade.setNome(cidadeDTO.getNome());
             if (cidadeDTO.getEstado() != null) {
                 cidade.setEstado(cidadeDTO.getEstado());
             }
             cidade.setDataAtualizacao(new Date());
-            return cidadeRepository.save(cidade);
+            return modelMapper.map(cidadeRepository.save(cidade), CidadeDTO.class);
         }).orElseThrow(() -> new RegistroNaoEncontrado(id));
     }
 
