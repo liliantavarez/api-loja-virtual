@@ -3,6 +3,7 @@ package com.dev.api.controllers;
 import com.dev.api.entities.ProdutoImagens;
 import com.dev.api.services.ProdutoImagensService;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,13 +13,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/produto-imagens")
+@AllArgsConstructor
 public class ProdutoImagensController {
 
     private final ProdutoImagensService produtoImagensService;
 
-    public ProdutoImagensController(ProdutoImagensService produtoImagensService) {
-        this.produtoImagensService = produtoImagensService;
-    }
 
     @GetMapping
     ResponseEntity<List<ProdutoImagens>> buscarTodos() {

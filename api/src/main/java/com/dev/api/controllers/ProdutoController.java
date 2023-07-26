@@ -6,6 +6,7 @@ import com.dev.api.entities.Produto;
 import com.dev.api.services.ProdutoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,13 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/produto")
+@AllArgsConstructor
 public class ProdutoController {
 
-    private ProdutoService produtoService;
-
-    public ProdutoController(ProdutoService produtoService) {
-        this.produtoService = produtoService;
-    }
+    private final ProdutoService produtoService;
 
     @GetMapping
     public ResponseEntity<List<ProdutoListagemDTO>> buscarTodos() {
@@ -28,9 +26,9 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<Produto> inserir(@RequestBody @Valid Produto produto, UriComponentsBuilder uriComponentsBuilder) {
-        Produto produtoCriado = produtoService.inserir(produto);
-        var uri = uriComponentsBuilder.path("/produto/{id}").buildAndExpand(produtoCriado.getId()).toUri();
+    public ResponseEntity<ProdutoListagemDTO> inserir(@RequestBody @Valid Produto produto, UriComponentsBuilder uriComponentsBuilder) {
+        ProdutoListagemDTO produtoCriado = produtoService.inserir(produto);
+        var uri = uriComponentsBuilder.path("/produto/{id}").buildAndExpand(produto.getId()).toUri();
 
         return ResponseEntity.created(uri).body(produtoCriado);
     }
