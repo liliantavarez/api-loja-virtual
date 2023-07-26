@@ -5,6 +5,7 @@ import com.dev.api.entities.Permissao;
 import com.dev.api.services.PermissaoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -13,13 +14,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/permissao")
+@AllArgsConstructor
 public class PermissaoController {
 
-    final private PermissaoService permissaoService;
+    private final PermissaoService permissaoService;
 
-    public PermissaoController(PermissaoService permissaoService) {
-        this.permissaoService = permissaoService;
-    }
 
     @GetMapping
     ResponseEntity<List<PermissaoDTO>> buscarTodos() {

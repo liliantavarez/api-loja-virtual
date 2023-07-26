@@ -5,7 +5,7 @@ import com.dev.api.entities.Estado;
 import com.dev.api.services.EstadoService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,10 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/estado")
+@AllArgsConstructor
 public class EstadoController {
 
-    @Autowired
-    EstadoService estadoService;
+    private final EstadoService estadoService;
 
     @GetMapping
     public ResponseEntity<List<EstadoDTO>> buscarTodos() {
@@ -25,12 +25,12 @@ public class EstadoController {
     }
 
     @PostMapping
-    ResponseEntity<Estado> inserir(@RequestBody @Valid EstadoDTO estadoDTO, UriComponentsBuilder uriComponentsBuilder) {
-        Estado estado = estadoService.inserir(estadoDTO);
+    ResponseEntity<EstadoDTO> inserir(@RequestBody @Valid Estado estado, UriComponentsBuilder uriComponentsBuilder) {
+        EstadoDTO estadoDTO = estadoService.inserir(estado);
 
         var uri = uriComponentsBuilder.path("/estado/{id}").buildAndExpand(estado.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(estado);
+        return ResponseEntity.created(uri).body(estadoDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -40,8 +40,8 @@ public class EstadoController {
     }
 
     @PatchMapping("/{id}")
-    ResponseEntity<Estado> alterar(@RequestBody EstadoDTO estadoDTO, @PathVariable @NotNull Long id) {
-        return ResponseEntity.ok(estadoService.alterar(estadoDTO, id));
+    ResponseEntity<EstadoDTO> alterar(@RequestBody Estado estado, @PathVariable @NotNull Long id) {
+        return ResponseEntity.ok(estadoService.alterar(estado, id));
     }
 
 }
