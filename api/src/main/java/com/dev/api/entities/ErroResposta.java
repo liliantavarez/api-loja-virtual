@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 public class ErroResposta {
-    private List<CampoErro> errors;
+    private final List<CampoErro> errors;
 
     public ErroResposta() {
         errors = new ArrayList<>();

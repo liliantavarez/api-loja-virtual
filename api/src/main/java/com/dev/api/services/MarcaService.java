@@ -4,6 +4,7 @@ import com.dev.api.dto.MarcaDTO;
 import com.dev.api.entities.Marca;
 import com.dev.api.exceptions.RegistroNaoEncontrado;
 import com.dev.api.repositories.MarcaRepository;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -11,32 +12,31 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class MarcaService {
 
-    MarcaRepository marcaRepository;
-    ModelMapper modelMapper;
+    private final MarcaRepository marcaRepository;
+    private final ModelMapper modelMapper;
 
-    public MarcaService(MarcaRepository marcaRepository, ModelMapper modelMapper) {
-        this.marcaRepository = marcaRepository;
-        this.modelMapper = modelMapper;
+    public List<MarcaDTO> buscarTodos() {
+        return marcaRepository.findAll()
+                .stream()
+                .map(marca -> modelMapper.map(marca, MarcaDTO.class))
+                .toList();
     }
 
-    public List<Marca> buscarTodos() {
-        return marcaRepository.findAll();
-    }
-
-    public Marca inserir(Marca marca) {
+    public MarcaDTO inserir(Marca marca) {
         marca.setDataCriacao(new Date());
-        return marcaRepository.save(marca);
+        return modelMapper.map(marcaRepository.save(marca), MarcaDTO.class);
     }
 
-    public Marca alterar(Marca marcaAtualizada, Long id) {
+    public MarcaDTO alterar(Marca marcaAtualizada, Long id) {
         return marcaRepository.findById(id).map(marca -> {
             if (marcaAtualizada.getNome() != null) {
                 marca.setNome(marcaAtualizada.getNome());
             }
             marca.setDataAtualizacao(new Date());
-            return marcaRepository.save(marca);
+            return modelMapper.map(marcaRepository.save(marca), MarcaDTO.class);
         }).orElseThrow(() -> new RegistroNaoEncontrado(id));
     }
 

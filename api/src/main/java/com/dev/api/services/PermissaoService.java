@@ -4,6 +4,7 @@ import com.dev.api.dto.PermissaoDTO;
 import com.dev.api.entities.Permissao;
 import com.dev.api.exceptions.RegistroNaoEncontrado;
 import com.dev.api.repositories.PermissaoRepository;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -11,15 +12,12 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class PermissaoService {
 
-    private PermissaoRepository permissaoRepository;
-    private ModelMapper modelMapper;
+    private final PermissaoRepository permissaoRepository;
+    private final ModelMapper modelMapper;
 
-    public PermissaoService(PermissaoRepository permissaoRepository, ModelMapper modelMapper) {
-        this.permissaoRepository = permissaoRepository;
-        this.modelMapper = modelMapper;
-    }
 
     public List<PermissaoDTO> buscarTodos() {
         return permissaoRepository.findAll().stream().map(permissao -> modelMapper.map(permissao, PermissaoDTO.class)).toList();

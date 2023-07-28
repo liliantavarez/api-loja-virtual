@@ -6,8 +6,8 @@ import lombok.Data;
 
 import java.util.Date;
 
-@Entity
 @Data
+@Entity
 @Table(name = "categoria")
 public class Categoria {
     @Id
@@ -21,4 +21,5 @@ public class Categoria {
     @Column(name = "data_atualizacao")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataAtualizacao;
+
 }

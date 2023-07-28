@@ -6,6 +6,7 @@ import com.dev.api.entities.Cidade;
 import com.dev.api.services.CidadeService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,19 +15,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cidade")
+@AllArgsConstructor
 public class CidadeController {
 
     private final CidadeService cidadeService;
 
-    public CidadeController(CidadeService cidadeService) {
-        this.cidadeService = cidadeService;
-    }
 
     @PostMapping
-    public ResponseEntity<Cidade> inserir(@RequestBody @Valid CidadeDTO cidadeDTO, UriComponentsBuilder uriComponentsBuilder) {
-        Cidade cidade = cidadeService.inserir(cidadeDTO);
+    public ResponseEntity<CidadeDTO> inserir(@RequestBody @Valid Cidade cidade, UriComponentsBuilder uriComponentsBuilder) {
+        CidadeDTO cidadeDTO = cidadeService.inserir(cidade);
         var uri = uriComponentsBuilder.path("/cidade/{id}").buildAndExpand(cidade.getId()).toUri();
-        return ResponseEntity.created(uri).body(cidade);
+        return ResponseEntity.created(uri).body(cidadeDTO);
     }
 
     @GetMapping
@@ -35,8 +34,8 @@ public class CidadeController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Cidade> alterar(@RequestBody CidadeDTO cidadeDTO, @PathVariable @NotNull Long id) {
-        return ResponseEntity.ok(cidadeService.alterar(cidadeDTO, id));
+    public ResponseEntity<CidadeDTO> alterar(@RequestBody Cidade cidade, @PathVariable @NotNull Long id) {
+        return ResponseEntity.ok(cidadeService.alterar(cidade, id));
     }
 
     @DeleteMapping("/{id}")

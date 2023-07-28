@@ -5,7 +5,7 @@ import com.dev.api.dto.PessoaListagemDTO;
 import com.dev.api.entities.Pessoa;
 import com.dev.api.services.PessoaService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,10 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pessoa")
+@AllArgsConstructor
 public class PessoaController {
 
-    @Autowired
-    private PessoaService pessoaService;
+    private final PessoaService pessoaService;
 
     @GetMapping
     ResponseEntity<List<PessoaListagemDTO>> buscarTodos() {
@@ -25,12 +25,12 @@ public class PessoaController {
     }
 
     @PostMapping
-    ResponseEntity<Pessoa> inserir(@Valid @RequestBody PessoaDTO pessoaDTO, UriComponentsBuilder uriComponentsBuilder) {
-        Pessoa pessoa = pessoaService.inserir(pessoaDTO);
+    ResponseEntity<PessoaDTO> inserir(@Valid @RequestBody Pessoa pessoa, UriComponentsBuilder uriComponentsBuilder) {
+        PessoaDTO pessoaSalva = pessoaService.inserir(pessoa);
 
         var uri = uriComponentsBuilder.path("/pessoa/{id}").buildAndExpand(pessoa.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(pessoa);
+        return ResponseEntity.created(uri).body(pessoaSalva);
     }
 
     @PatchMapping("/{id}")

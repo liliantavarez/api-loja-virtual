@@ -1,7 +1,7 @@
 package com.dev.api.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -15,7 +15,7 @@ public class Cidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotNull
+    @NotBlank(message = "Insira o nome da cidade!")
     @Size(min = 2, max = 35)
     private String nome;
     @ManyToOne
