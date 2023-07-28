@@ -18,11 +18,10 @@ public class CidadeService {
 
     private final CidadeRepository cidadeRepository;
     private final ModelMapper modelMapper;
-    
-    public Cidade inserir(CidadeDTO cidadeDTO) {
-        Cidade cidade = cidadeRepository.save(modelMapper.map(cidadeDTO, Cidade.class));
+
+    public CidadeDTO inserir(Cidade cidade) {
         cidade.setDataCriacao(new Date());
-        return cidade;
+        return modelMapper.map(cidadeRepository.save(cidade), CidadeDTO.class);
     }
 
     public List<CidadeListagemDTO> buscarTodos() {

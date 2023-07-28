@@ -22,10 +22,10 @@ public class CidadeController {
 
 
     @PostMapping
-    public ResponseEntity<Cidade> inserir(@RequestBody @Valid CidadeDTO cidadeDTO, UriComponentsBuilder uriComponentsBuilder) {
-        Cidade cidade = cidadeService.inserir(cidadeDTO);
+    public ResponseEntity<CidadeDTO> inserir(@RequestBody @Valid Cidade cidade, UriComponentsBuilder uriComponentsBuilder) {
+        CidadeDTO cidadeDTO = cidadeService.inserir(cidade);
         var uri = uriComponentsBuilder.path("/cidade/{id}").buildAndExpand(cidade.getId()).toUri();
-        return ResponseEntity.created(uri).body(cidade);
+        return ResponseEntity.created(uri).body(cidadeDTO);
     }
 
     @GetMapping
