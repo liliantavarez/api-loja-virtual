@@ -27,9 +27,8 @@ public class PessoaService {
     }
 
     public PessoaDTO inserir(Pessoa pessoa) {
-        PessoaDTO pessoaDTO = modelMapper.map(pessoaRepository.save(pessoa), PessoaDTO.class);
         pessoa.setDataCriacao(new Date());
-        return pessoaDTO;
+        return modelMapper.map(pessoaRepository.save(pessoa), PessoaDTO.class);
     }
 
     public Pessoa atualizar(PessoaDTO pessoaDTO, Long id) {
