@@ -43,3 +43,6 @@ build/
 ### VS Code ###
 .vscode/
 *.pb
+.idea/workspace.xml
+.idea/sonarlint/issuestore/index.pb
+.idea/sonarlint/securityhotspotstore/index.pb
