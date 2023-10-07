@@ -2,24 +2,19 @@ package com.dev.api.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "estado")
-public class Estado {
+@Table(name = "categoria")
+public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotBlank(message = "Insira o nome do estado!")
-    @Size(min = 4, max = 20)
+    @NotBlank(message = "Insira o nome da categoria!")
     private String nome;
-    @NotBlank(message = "Insira a sigla do estado!")
-    @Size(min = 2, max = 2)
-    private String sigla;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_criacao")
     private Date dataCriacao;
