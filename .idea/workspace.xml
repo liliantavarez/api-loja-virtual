@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="27fa0a81-5526-4fbb-80cf-031b00b7e5b2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-    </list>
+    <list default="true" id="27fa0a81-5526-4fbb-80cf-031b00b7e5b2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,8 +30,40 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1696703549" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="back-crud-pessoa" />
+                    <option name="lastUsedInstant" value="1696703496" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="#JAVA_HOME" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="2QfefsiflbgAa3BzgACD1ysEo8N" />
   <component name="ProjectViewState">
@@ -45,6 +72,10 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -56,7 +87,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Subversion.SSH&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
     &quot;zielu.gittoolbox.prj.config.selected.tab.id&quot;: &quot;zielu.gittoolbox.config.shared.autoFetch&quot;
   }
@@ -71,6 +102,14 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="loja-virtual" />
       <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dev.api.ApiApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -99,5 +138,42 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="com.github.evgenys91.machinet.common.dslhistory.DslHistoryState">
+    <option name="historyDtoById">
+      <map>
+        <entry key="ab0b85">
+          <value>
+            <ChatHistoryModel>
+              <option name="id" value="ab0b85" />
+              <option name="initiateTms" value="1696703302229" />
+              <option name="request" value="How to fix the following error:&#10; Provides transitive vulnerable dependency maven:org.yaml:snakeyaml:1.33 CVE-2022-41854 6.5 Out-of-bounds Write vulnerability CVE-2022-1471 9.8 Deserialization of Untrusted Data vulnerability  Results powered by Checkmarx(c) " />
+              <option name="response" value="" />
+              <option name="responseDescription" value="To fix the vulnerability in the `pom.xml` file related to the `org.yaml:snakeyaml` dependency, you need to update the version of the dependency to a version that does not have the reported vulnerabilities.&#10;&#10;Here are the steps to fix the error:&#10;&#10;1. Identify the latest version of the `org.yaml:snakeyaml` dependency that does not have the reported vulnerabilities. You can check the Maven Central Repository or the official SnakeYAML website for the latest version.&#10;&#10;2. Open the `pom.xml` file in a text editor or an integrated development environment (IDE).&#10;&#10;3. Locate the `&lt;dependencies&gt;` section in the `pom.xml` file.&#10;&#10;4. Find the entry for the `org.yaml:snakeyaml` dependency. It should look something like this:&#10;&#10;```xml&#10;&lt;dependency&gt;&#10;    &lt;groupId&gt;org.yaml&lt;/groupId&gt;&#10;    &lt;artifactId&gt;snakeyaml&lt;/artifactId&gt;&#10;    &lt;version&gt;1.33&lt;/version&gt;&#10;&lt;/dependency&gt;&#10;```&#10;&#10;5. Update the version number to the latest version that does not have the reported vulnerabilities. For example, if the latest version is `1.34`, the updated entry should look like this:&#10;&#10;```xml&#10;&lt;dependency&gt;&#10;    &lt;groupId&gt;org.yaml&lt;/groupId&gt;&#10;    &lt;artifactId&gt;snakeyaml&lt;/artifactId&gt;&#10;    &lt;version&gt;1.34&lt;/version&gt;&#10;&lt;/dependency&gt;&#10;```&#10;&#10;6. Save the `pom.xml` file.&#10;&#10;By updating the version of the `org.yaml:snakeyaml` dependency to a version that does not have the reported vulnerabilities, you ensure that your project is using a secure version of the library.&#10;&#10;Remember to also regularly check for updates and security advisories for your project's dependencies to stay up-to-date with the latest security patches." />
+              <option name="responseFileName" value="" />
+              <option name="responseFilePath" value="" />
+              <option name="responseTms" value="1696703306775" />
+              <option name="usedFilesPaths">
+                <list>
+                  <option value="$PROJECT_DIR$/pom.xml" />
+                </list>
+              </option>
+            </ChatHistoryModel>
+          </value>
+        </entry>
+        <entry key="greeting">
+          <value>
+            <ChatHistoryModel>
+              <option name="id" value="greeting" />
+              <option name="initiateTms" value="1696703286823" />
+              <option name="request" value="" />
+              <option name="response" value="" />
+              <option name="responseDescription" value="&#10;Hello, I am Machinet AI - context aware chat, which can help you with your daily programming routine. How can I help?" />
+              <option name="responseTms" value="1696703288539" />
+            </ChatHistoryModel>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
