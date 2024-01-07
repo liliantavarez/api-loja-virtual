@@ -19,30 +19,22 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotBlank(message = "Insira seu nome!")
     private String nome;
-    @NotBlank(message = "Insira seu CPF!")
-    @Size(min = 11, max = 14)
-    @CPF(message = "CPF inválido")
     private String cpf;
-    @NotBlank(message = "Insira seu e-mail!")
-    @Size(min = 6, max = 120)
-    @Email(message = "E-mail inválido")
     private String email;
-    @NotBlank(message = "Insira uma senha!")
-    @Size(min = 8)
     private String senha;
-    @NotBlank(message = "Insira seu endereço!")
-    @Size(min = 5)
     private String endereco;
-    @NotBlank(message = "Insira seu cep!")
-    @Size(min = 8, max = 9, message = "CEP inválido")
     private String cep;
+    @Column(name = "codigo_recuperacao_senha")
+    private String codigoRecuperacaoSenha;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_envio_codigo")
+    private Date dataEnvioCodigo;
     @ManyToOne
     @JoinColumn(name = "cidade_id")
     private Cidade cidade;
     @OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @Setter(value = AccessLevel.NONE) //Desabilita o setter fornecido pelo lombok
+    @Setter(value = AccessLevel.NONE)
     private List<PermissaoPessoa> permissoesPessoa;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_criacao")

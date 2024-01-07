@@ -6,7 +6,9 @@ import com.dev.api.exceptions.RegistroNaoEncontrado;
 import com.dev.api.repositories.ProdutoImagensRepository;
 import com.dev.api.repositories.ProdutoRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -66,4 +68,9 @@ public class ProdutoImagensService {
                 .delete(produtoImagensRepository
                         .findById(id).orElseThrow(() -> new RegistroNaoEncontrado(id)));
     }
+
+    public ProdutoImagens buscarPorID(Long id) {
+        return produtoImagensRepository.findById(id).orElseThrow(() -> new RegistroNaoEncontrado(id));
+    }
+
 }

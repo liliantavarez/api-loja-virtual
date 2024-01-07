@@ -1,4 +1,4 @@
-package com.dev.api.dto;
+package com.dev.api.dto.request;
 
 import com.dev.api.entities.Cidade;
 import jakarta.validation.constraints.Email;
@@ -8,21 +8,20 @@ import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Data
-public class PessoaClienteRequestDTO {
+public class PessoaRequestDTO {
     @NotBlank(message = "Insira seu nome!")
     private String nome;
-    @NotBlank(message = "Insira seu CPF!")
     @CPF(message = "CPF inválido")
     @Size(min = 11, max = 14)
     private String cpf;
-    @NotBlank(message = "Insira seu e-mail!")
-    @Size(min = 6, max = 120)
     @Email(message = "E-mail inválido")
+    @Size(min = 6, max = 120)
     private String email;
-    @NotBlank(message = "Insira seu endereço!")
+    @NotBlank(message = "Insira uma senha!")
+    @Size(min = 8)
+    private String senha;
     @Size(min = 5)
     private String endereco;
-    @NotBlank(message = "Insira seu cep!")
     @Size(min = 8, max = 9, message = "CEP inválido")
     private String cep;
     private Cidade cidade;
