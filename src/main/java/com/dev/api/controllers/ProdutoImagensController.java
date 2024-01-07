@@ -4,6 +4,7 @@ import com.dev.api.entities.ProdutoImagens;
 import com.dev.api.services.ProdutoImagensService;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +36,11 @@ public class ProdutoImagensController {
     @PatchMapping("/{id}")
     ResponseEntity<ProdutoImagens> alterar(@RequestBody ProdutoImagens imagem, @PathVariable @NotNull Long id) {
         return ResponseEntity.ok(produtoImagensService.alterar(imagem, id));
+    }
+
+    @GetMapping("/{id}")
+    ResponseEntity<ProdutoImagens> buscarPorID(@PathVariable Long id) {
+        return ResponseEntity.ok(produtoImagensService.buscarPorID(id));
     }
 
     @DeleteMapping("/{id}")

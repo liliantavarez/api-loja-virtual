@@ -1,6 +1,6 @@
 package com.dev.api.controllers;
 
-import com.dev.api.dto.PessoaClienteRequestDTO;
+import com.dev.api.dto.request.PessoaClienteRequestDTO;
 import com.dev.api.dto.PessoaDTO;
 import com.dev.api.entities.Pessoa;
 import com.dev.api.services.PessoaClienteService;
@@ -8,10 +8,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -28,9 +25,13 @@ public class PessoaClienteController {
 
         Pessoa pessoa = modelMapper.map(pessoaClienteRequestDTO, Pessoa.class);
 
-        var uri = uriComponentsBuilder.path("/pessoa/{id}").buildAndExpand(pessoa.getId()).toUri();
+        var uri = uriComponentsBuilder.path("/cliente/{id}").buildAndExpand(pessoa.getId()).toUri();
 
         return ResponseEntity.created(uri).body(modelMapper.map(pessoa, PessoaDTO.class));
     }
 
+    @GetMapping("/{id}")
+    ResponseEntity<PessoaDTO> buscarPorID(@PathVariable Long id) {
+        return ResponseEntity.ok(pessoaClienteService.buscarPorID(id));
+    }
 }

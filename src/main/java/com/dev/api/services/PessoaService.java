@@ -2,6 +2,7 @@ package com.dev.api.services;
 
 import com.dev.api.dto.PessoaDTO;
 import com.dev.api.dto.PessoaListagemDTO;
+import com.dev.api.dto.request.PessoaRequestDTO;
 import com.dev.api.entities.Pessoa;
 import com.dev.api.exceptions.RegistroNaoEncontrado;
 import com.dev.api.repositories.PessoaRepository;
@@ -26,9 +27,11 @@ public class PessoaService {
                 .map(pessoa -> modelMapper.map(pessoa, PessoaListagemDTO.class)).toList();
     }
 
-    public PessoaDTO inserir(Pessoa pessoa) {
-        pessoa.setDataCriacao(new Date());
-        return modelMapper.map(pessoaRepository.save(pessoa), PessoaDTO.class);
+    public PessoaDTO inserir(PessoaRequestDTO pessoaRequestDTO) {
+        Pessoa pessoa = pessoaRepository.save(modelMapper.map(pessoaRequestDTO, Pessoa.class));
+        pessoa
+                .setDataCriacao(new Date());
+        return modelMapper.map(pessoa, PessoaDTO.class);
     }
 
     public Pessoa atualizar(PessoaDTO pessoaDTO, Long id) {

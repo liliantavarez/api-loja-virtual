@@ -2,6 +2,7 @@ package com.dev.api.controllers;
 
 import com.dev.api.dto.PessoaDTO;
 import com.dev.api.dto.PessoaListagemDTO;
+import com.dev.api.dto.request.PessoaRequestDTO;
 import com.dev.api.entities.Pessoa;
 import com.dev.api.services.PessoaService;
 import jakarta.validation.Valid;
@@ -25,10 +26,10 @@ public class PessoaController {
     }
 
     @PostMapping
-    ResponseEntity<PessoaDTO> inserir(@Valid @RequestBody Pessoa pessoa, UriComponentsBuilder uriComponentsBuilder) {
-        PessoaDTO pessoaSalva = pessoaService.inserir(pessoa);
+    ResponseEntity<PessoaDTO> inserir(@Valid @RequestBody PessoaRequestDTO pessoaRequestDTO, UriComponentsBuilder uriComponentsBuilder) {
+        PessoaDTO pessoaSalva = pessoaService.inserir(pessoaRequestDTO);
 
-        var uri = uriComponentsBuilder.path("/pessoa/{id}").buildAndExpand(pessoa.getId()).toUri();
+        var uri = uriComponentsBuilder.path("/pessoa/{id}").buildAndExpand(pessoaSalva.getId()).toUri();
 
         return ResponseEntity.created(uri).body(pessoaSalva);
     }
