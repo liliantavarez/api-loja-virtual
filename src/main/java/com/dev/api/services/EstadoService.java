@@ -19,11 +19,8 @@ public class EstadoService {
     private final ModelMapper modelMapper;
 
 
-    public List<EstadoDTO> buscarTodos() {
-        return estadoRepository.findAll()
-                .stream()
-                .map(estado -> modelMapper.map(estado, EstadoDTO.class))
-                .toList();
+    public List<Estado> buscarTodos() {
+        return estadoRepository.findAll();
     }
 
     public EstadoDTO inserir(Estado estado) {
@@ -34,9 +31,7 @@ public class EstadoService {
     public EstadoDTO alterar(Estado estadoAtualizado, Long id) {
         return estadoRepository.findById(id).map(estado -> {
             estado.setNome(estadoAtualizado.getNome());
-            if (estado.getSigla() == null) {
-                estado.setSigla(estadoAtualizado.getSigla());
-            }
+            estado.setSigla(estadoAtualizado.getSigla());
 
             estado.setDataAtualizacao(new Date());
             return modelMapper.map(estadoRepository.save(estado), EstadoDTO.class);

@@ -20,7 +20,7 @@ public class EstadoController {
     private final EstadoService estadoService;
 
     @GetMapping
-    public ResponseEntity<List<EstadoDTO>> buscarTodos() {
+    public ResponseEntity<List<Estado>> buscarTodos() {
         return ResponseEntity.ok(estadoService.buscarTodos());
     }
 

@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -26,5 +27,6 @@ public class Estado {
     @Column(name = "data_atualizacao")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataAtualizacao;
-
+    @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cidade> cidades;
 }
