@@ -5,8 +5,9 @@
 Desenvolvimento de uma loja virtual utilizando o spring, react e next.js
 
 ## Diagrama de Classes 
-  
-![image](https://github.com/liliantavarez/loja-virtual/assets/51184806/a3b04964-c7bc-459d-8b73-f0a10872c3b0)
+
+![image](https://github.com/liliantavarez/api-loja-virtual/assets/51184806/beccdbe3-6976-4e64-ba10-75f6e036bfd1)
+
 </div>
 
 ## Stack utilizada
