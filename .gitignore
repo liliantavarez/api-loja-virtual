@@ -46,3 +46,5 @@ build/
 .idea/workspace.xml
 .idea/sonarlint/issuestore/index.pb
 .idea/sonarlint/securityhotspotstore/index.pb
+*.pb
+.idea/*
