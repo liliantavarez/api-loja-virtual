@@ -47,3 +47,8 @@ spring-boot-starter-parent/
 *.sql
 *.sqlite
 *.sqlite3
+
+# IntelliJ IDEA
+.idea/workspace.xml
+.idea/sonarlint/issuestore/index.pb
+.idea/sonarlint/securityhotspotstore/index.pb
